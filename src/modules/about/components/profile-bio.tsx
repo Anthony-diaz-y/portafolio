@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Check, MapPin } from "lucide-react";
 import { Badge } from "@/shared/ui/badge";
 import { SITE } from "@/shared/constants/site.constants";
+import { BrandMark } from "@/shared/components/brand-mark";
 import { education, training } from "../data/career.data";
 import type { Profile } from "../types/profile.types";
 
@@ -65,7 +66,7 @@ export function ProfileBio({ profile }: ProfileBioProps) {
       <aside className="about-layout__side" aria-label="Resumen del perfil">
         <section className="about-identity">
           <div className="about-identity__top"><span className="eyebrow">Perfil profesional</span><span className="about-identity__dot" aria-hidden="true" /></div>
-          <div className="about-identity__monogram" aria-hidden="true">AD<span>.</span></div>
+          <div className="about-identity__monogram"><BrandMark className="about-identity__monogram-glyph" /></div>
           <h2>{profile.name}</h2>
           <p>{profile.role}</p>
           <div className="about-identity__links">

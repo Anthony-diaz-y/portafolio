@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NAV_ITEMS } from "@/shared/constants/navigation.constants";
 import { SITE } from "@/shared/constants/site.constants";
+import { BrandMark } from "./brand-mark";
 import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
@@ -8,7 +9,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="site-shell site-header__inner">
         <Link href="/" className="site-brand" aria-label="Anthony Díaz, inicio">
-          <span className="site-brand__mark" aria-hidden="true">ad.</span>
+          <span className="site-brand__mark"><BrandMark className="site-brand__glyph" /></span>
           <span className="site-brand__name">{SITE.name}</span>
         </Link>
         <nav aria-label="Principal" className="site-nav">
