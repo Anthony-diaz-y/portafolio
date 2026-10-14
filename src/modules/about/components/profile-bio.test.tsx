@@ -20,7 +20,7 @@ describe("ProfileBio", () => {
     expect(screen.getByRole("heading", { name: "Habilidades" })).toBeInTheDocument();
     expect(screen.getByText("React")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Formación académica" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Ver perfil en LinkedIn/ })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /LinkedIn/ })).toHaveAttribute(
       "href",
       "https://www.linkedin.com/in/anthony-daniel-diaz-yacsahuanga-2408b3399/",
     );

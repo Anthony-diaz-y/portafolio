@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
 import type { Project } from "../types/project.types";
@@ -9,25 +10,22 @@ type ProjectDetailProps = {
 
 export function ProjectDetail({ project }: ProjectDetailProps) {
   return (
-    <article className="space-y-6">
-      <header className="space-y-2">
-        <p className="text-sm text-muted-foreground">{project.year}</p>
-        <h1 className="font-heading text-3xl font-bold tracking-tight">{project.title}</h1>
-        <p className="text-lg text-muted-foreground">{project.summary}</p>
+    <article className="project-detail">
+      <Link href="/projects" className="project-detail__back"><ArrowLeft aria-hidden="true" size={15} /> Todos los proyectos</Link>
+      <header className="project-detail__header">
+        <span className="eyebrow">Caso seleccionado · {project.year}</span>
+        <h1>{project.title}</h1>
+        <p>{project.summary}</p>
+        <div className="project-detail__tags">
+          {project.tags.map((tag) => <Badge key={tag} variant="secondary">{tag}</Badge>)}
+        </div>
       </header>
-      <div className="flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <Badge key={tag} variant="secondary">
-            {tag}
-          </Badge>
-        ))}
-      </div>
-      <div className="space-y-4">
+      <div className="project-detail__body">
         {project.description.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
-      <div className="flex flex-wrap gap-3">
+      <div className="project-detail__actions">
         {project.liveUrl && (
           <Button asChild>
             <a href={project.liveUrl} target="_blank" rel="noreferrer">
@@ -42,9 +40,6 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             </a>
           </Button>
         )}
-        <Button asChild variant="ghost">
-          <Link href="/projects">← Todos los proyectos</Link>
-        </Button>
       </div>
     </article>
   );

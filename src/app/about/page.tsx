@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { ProfileBioContainer } from "@/modules/about";
-import { PageHeader } from "@/shared/components/page-header";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Sobre mí",
@@ -11,12 +8,16 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <>
-      <PageHeader title="Sobre mí" description="Desarrollo full stack con una mirada puesta en los procesos, los datos y las personas." />
+    <div className="about-page">
+      <header className="about-page__hero">
+        <div>
+          <span className="eyebrow">Perfil · Lima, Perú</span>
+          <h1>Sobre mí <em>y cómo pienso.</em></h1>
+          <p>Aprendo a entender los procesos y a construir sistemas que los hacen más simples.</p>
+        </div>
+        <div className="about-page__seal" aria-hidden="true"><span>02</span><small>caminos<br />en formación</small><i>✳</i></div>
+      </header>
       <ProfileBioContainer />
-      <Link href="/experience" className="text-link about-experience-link">
-        Ver experiencia profesional <ArrowRight aria-hidden="true" size={16} />
-      </Link>
-    </>
+    </div>
   );
 }

@@ -16,12 +16,13 @@ const project: Project = {
 describe("ProjectList", () => {
   it("renders one linked card per project", () => {
     render(<ProjectList projects={[project]} />);
-    expect(screen.getAllByRole("listitem")).toHaveLength(1);
+    expect(screen.getByRole("list", { name: "Proyectos seleccionados" })).toBeInTheDocument();
+    expect(screen.getAllByRole("link")).toHaveLength(1);
     expect(screen.getByRole("link", { name: "Primero" })).toHaveAttribute("href", "/projects/primero");
   });
 
   it("shows an empty state", () => {
     render(<ProjectList projects={[]} />);
-    expect(screen.getByText("Todavía no hay proyectos publicados.")).toBeInTheDocument();
+    expect(screen.getByText(/Aún no hay casos publicados/)).toBeInTheDocument();
   });
 });
