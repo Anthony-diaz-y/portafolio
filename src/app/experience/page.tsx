@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { career } from "@/modules/about/data/career.data";
-import { PageHeader } from "@/shared/components/page-header";
+import { SITE } from "@/shared/constants/site.constants";
 
 export const metadata: Metadata = {
   title: "Trayectoria",
@@ -11,10 +12,22 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <PageHeader
-        title="Trayectoria"
-        description="Experiencia en desarrollo web, plataformas académicas, sistemas internos y trabajo con datos."
-      />
+      <header className="career-hero">
+        <div className="career-hero__copy">
+          <span className="eyebrow">Experiencia · Lima, Perú</span>
+          <h1>Trayectoria con <em>propósito.</em></h1>
+          <p>Un recorrido entre producto, datos y desarrollo web: de las prácticas a construir soluciones para equipos y operaciones reales.</p>
+          <a className="career-hero__jump" href="#recorrido">Ver recorrido <span aria-hidden="true">↓</span></a>
+        </div>
+        <div className="career-hero__stamp" aria-hidden="true">
+          <span>Desde</span><strong>2024</strong><i>✳</i>
+        </div>
+        <span className="career-hero__orbit" aria-hidden="true" />
+      </header>
+      <div className="career-section-heading" id="recorrido">
+        <div><span className="eyebrow">El camino hasta aquí</span><h2>Experiencia profesional</h2></div>
+        <span>{career.length} etapas <i>·</i> desarrollo y mejora continua</span>
+      </div>
       <ol className="career-list">
         {career.map((entry) => (
           <li className="career-entry" key={entry.id}>
@@ -35,9 +48,10 @@ export default function Page() {
           </li>
         ))}
       </ol>
-      <a className="about-profile__linkedin career-link" href="https://www.linkedin.com/in/anthony-daniel-diaz-yacsahuanga-2408b3399/" target="_blank" rel="noreferrer">
-        Más detalles en LinkedIn <ArrowUpRight aria-hidden="true" size={16} />
-      </a>
+      <div className="career-footer">
+        <p>¿Quieres conocer más sobre mi recorrido?</p>
+        <Link className="career-footer__link" href={SITE.linkedIn} target="_blank" rel="noreferrer">Conversemos en LinkedIn <ArrowUpRight aria-hidden="true" size={16} /></Link>
+      </div>
     </>
   );
 }

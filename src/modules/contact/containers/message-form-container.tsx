@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { startTransition, useActionState, useEffect } from "react";
+import { startTransition, useActionState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/shared/ui/button";
 import { submitMessage } from "../actions/submit-message.action";
@@ -16,13 +16,8 @@ export function MessageFormContainer() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<MessageInput>({ resolver: zodResolver(messageSchema), defaultValues: EMPTY_MESSAGE });
-
-  useEffect(() => {
-    if (state?.ok) reset(EMPTY_MESSAGE);
-  }, [state, reset]);
 
   const onValid = (values: MessageInput) => {
     const formData = new FormData();
@@ -33,7 +28,7 @@ export function MessageFormContainer() {
   const serverErrors = state && !state.ok ? state.errors : undefined;
 
   return (
-    <form noValidate onSubmit={handleSubmit(onValid)} className="max-w-xl space-y-5">
+    <form noValidate onSubmit={handleSubmit(onValid)} className="contact-form" aria-label="Formulario de contacto">
       <MessageFormFields
         register={register}
         errors={{
@@ -42,12 +37,12 @@ export function MessageFormContainer() {
           message: errors.message?.message ?? serverErrors?.message?.[0],
         }}
       />
-      <Button type="submit" disabled={isPending}>
-        {isPending ? "Enviando…" : "Enviar mensaje"}
+      <Button type="submit" disabled={isPending} className="contact-form__submit">
+        {isPending ? "Validando…" : "Validar mensaje"}
       </Button>
       {state?.ok && (
-        <p role="status" className="text-sm text-muted-foreground">
-          ¡Gracias! Te responderé lo antes posible.
+        <p role="status" aria-live="polite" className="contact-form__status">
+          El formulario se validó correctamente. El envío por correo aún está en preparación; puedes escribirme directamente por LinkedIn.
         </p>
       )}
     </form>
