@@ -6,6 +6,11 @@ export type Project = {
   description: readonly string[];
   tags: readonly string[];
   year: number;
+  caseStudy?: {
+    challenge: string;
+    approach: readonly string[];
+    outcome: string;
+  };
   repoUrl?: string;
   liveUrl?: string;
 };
