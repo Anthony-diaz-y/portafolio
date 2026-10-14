@@ -7,7 +7,12 @@ type ProjectListProps = {
 
 export function ProjectList({ projects }: ProjectListProps) {
   if (projects.length === 0) {
-    return <p className="text-muted-foreground">Todavía no hay proyectos publicados.</p>;
+    return (
+      <div className="project-note">
+        <span className="project-note__mark" aria-hidden="true">✳</span>
+        <p>Estoy preparando una selección de proyectos reales para compartir aquí.</p>
+      </div>
+    );
   }
 
   return (

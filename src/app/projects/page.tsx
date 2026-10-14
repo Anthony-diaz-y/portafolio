@@ -4,13 +4,13 @@ import { PageHeader } from "@/shared/components/page-header";
 
 export const metadata: Metadata = {
   title: "Proyectos",
-  description: "Selección de proyectos en los que he trabajado.",
+  description: "Casos seleccionados de la experiencia profesional y académica de Anthony Díaz.",
 };
 
 export default function Page() {
   return (
     <>
-      <PageHeader title="Proyectos" description="Selección de proyectos en los que he trabajado." />
+      <PageHeader title="Proyectos" description="Una selección de mi trabajo en desarrollo digital." />
       <ProjectsContainer />
     </>
   );

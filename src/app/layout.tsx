@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <ThemeProvider>
           <SiteHeader />
-          <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-10">{children}</main>
+          <main className="site-shell flex-1 py-8">{children}</main>
           <SiteFooter year={new Date().getFullYear()} />
         </ThemeProvider>
       </body>

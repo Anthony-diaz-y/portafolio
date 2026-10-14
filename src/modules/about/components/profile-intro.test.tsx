@@ -6,9 +6,11 @@ import { ProfileIntro } from "./profile-intro";
 const profile: Profile = {
   name: "Ana",
   role: "Desarrolladora",
+  location: "Lima, Perú",
   tagline: "Lema",
   bio: [],
-  skills: [],
+  skillGroups: [],
+  languages: [],
 };
 
 describe("ProfileIntro", () => {

@@ -1,6 +1,8 @@
 export const SITE = {
-  name: "Portafolio Pro",
-  author: "Alex Rivera",
-  description: "Portafolio de desarrollo web: proyectos, artículos y contacto.",
-  locale: "es-ES",
+  name: "Anthony Díaz",
+  author: "Anthony Daniel Díaz Yacsahuanga",
+  description: "Portafolio de Anthony Daniel Díaz Yacsahuanga, desarrollador full stack.",
+  locale: "es",
+  linkedIn: "https://www.linkedin.com/in/anthony-daniel-diaz-yacsahuanga-2408b3399/",
+  github: "https://github.com/Anthony-diaz-y",
 } as const;

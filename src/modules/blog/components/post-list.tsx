@@ -9,7 +9,7 @@ type PostListProps = {
 
 export function PostList({ posts }: PostListProps) {
   if (posts.length === 0) {
-    return <p className="text-muted-foreground">Todavía no hay artículos publicados.</p>;
+    return <div className="project-note"><span className="project-note__mark" aria-hidden="true">✳</span><p>Aún no hay artículos publicados.</p></div>;
   }
 
   return (

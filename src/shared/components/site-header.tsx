@@ -5,16 +5,17 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
   return (
-    <header className="border-b">
-      <div className="mx-auto flex w-full max-w-4xl flex-wrap items-center justify-between gap-4 px-4 py-4">
-        <Link href="/" className="font-heading text-lg font-semibold">
-          {SITE.name}
+    <header className="site-header">
+      <div className="site-shell site-header__inner">
+        <Link href="/" className="site-brand" aria-label="Anthony Díaz, inicio">
+          <span className="site-brand__mark" aria-hidden="true">ad.</span>
+          <span className="site-brand__name">{SITE.name}</span>
         </Link>
-        <nav aria-label="Principal" className="flex items-center gap-1 sm:gap-4">
-          <ul className="flex flex-wrap items-center gap-3 text-sm sm:gap-5">
+        <nav aria-label="Principal" className="site-nav">
+          <ul className="site-nav__list">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link href={item.href} className="site-nav__link">
                   {item.label}
                 </Link>
               </li>
