@@ -1,9 +1,21 @@
 import { notFound } from "next/navigation";
 import { ProjectDetail } from "../components/project-detail";
-import { getProjectBySlug } from "../queries/get-project-by-slug.query";
+import { getProjects } from "../queries/get-projects.query";
 
 export async function ProjectDetailContainer({ slug }: { slug: string }) {
-  const project = await getProjectBySlug(slug);
+  const projects = await getProjects();
+  const projectIndex = projects.findIndex((item) => item.slug === slug);
+  const project = projects[projectIndex];
   if (!project) notFound();
-  return <ProjectDetail project={project} />;
+
+  const nextProject = projects[(projectIndex + 1) % projects.length];
+
+  return (
+    <ProjectDetail
+      project={project}
+      nextProject={nextProject}
+      projectNumber={projectIndex + 1}
+      projectCount={projects.length}
+    />
+  );
 }

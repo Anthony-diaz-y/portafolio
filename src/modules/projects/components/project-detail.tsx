@@ -3,12 +3,16 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
 import type { Project } from "../types/project.types";
+import { ProjectIllustration } from "./project-illustration";
 
 type ProjectDetailProps = {
   project: Project;
+  nextProject?: Project;
+  projectNumber: number;
+  projectCount: number;
 };
 
-export function ProjectDetail({ project }: ProjectDetailProps) {
+export function ProjectDetail({ project, nextProject, projectNumber, projectCount }: ProjectDetailProps) {
   const approach = project.caseStudy?.approach ?? project.description;
   const outcome = project.caseStudy?.outcome ?? project.description.at(-1) ?? project.summary;
 
@@ -21,22 +25,14 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
       <header className="project-detail__hero">
         <div className="project-detail__intro">
-          <span className="project-detail__eyebrow"><i aria-hidden="true" /> Caso seleccionado <span>·</span> {project.year}</span>
+          <span className="project-detail__eyebrow"><i aria-hidden="true" /> Caso {String(projectNumber).padStart(2, "0")} / {String(projectCount).padStart(2, "0")} <span>·</span> {project.year}</span>
           <h1>{project.title}</h1>
           <p>{project.summary}</p>
           <div className="project-detail__tags" aria-label="Tecnologías y enfoque del proyecto">
             {project.tags.map((tag) => <Badge key={tag} variant="secondary">{tag}</Badge>)}
           </div>
         </div>
-
-        <div className="project-detail__visual" aria-hidden="true">
-          <div className="project-detail__visual-top"><span>ESTUDIO DE CASO</span><span>{project.year}</span></div>
-          <div className="project-detail__visual-orbit project-detail__visual-orbit--one" />
-          <div className="project-detail__visual-orbit project-detail__visual-orbit--two" />
-          <div className="project-detail__visual-core"><span>{project.tags[0] ?? "Producto"}</span><i>✳</i></div>
-          <div className="project-detail__visual-flow"><span /> <i /> <span /> <i /> <span /></div>
-          <p>ANÁLISIS <b>·</b> CONSTRUCCIÓN <b>·</b> MEJORA</p>
-        </div>
+        <ProjectIllustration projectId={project.id} variant="detail" />
       </header>
 
       <div className="project-detail__chapters">
@@ -77,6 +73,14 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           <Button asChild><Link href="/contact">Hablemos <ArrowUpRight aria-hidden="true" /></Link></Button>
         </div>
       </section>
+
+      {nextProject && (
+        <Link href={`/projects/${nextProject.slug}`} className="project-detail__next" aria-label={`Siguiente caso: ${nextProject.title}`}>
+          <span className="project-detail__next-count">{String((projectNumber % projectCount) + 1).padStart(2, "0")} <i>—</i> {String(projectCount).padStart(2, "0")}</span>
+          <span className="project-detail__next-copy"><span className="eyebrow">Siguiente caso</span><strong>{nextProject.title}</strong><small>{nextProject.summary}</small></span>
+          <span className="project-detail__next-arrow" aria-hidden="true"><ArrowUpRight size={20} /></span>
+        </Link>
+      )}
     </article>
   );
 }

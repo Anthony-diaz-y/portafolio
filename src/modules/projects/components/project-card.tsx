@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/shared/ui/badge";
 import type { Project } from "../types/project.types";
+import { ProjectIllustration } from "./project-illustration";
 
 type ProjectCardProps = {
   project: Project;
@@ -12,14 +13,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <li className="project-card-shell">
       <Link href={`/projects/${project.slug}`} className="project-card" aria-label={project.title}>
-        <div className="project-card__art" aria-hidden="true">
-          <span className="project-card__art-grid" />
-          <span className="project-card__art-orbit" />
-          <span className="project-card__art-chip">{String(index + 1).padStart(2, "0")}</span>
-          <span className="project-card__art-line project-card__art-line--one" />
-          <span className="project-card__art-line project-card__art-line--two" />
-          <span className="project-card__art-line project-card__art-line--three" />
-          <span className="project-card__art-mark">✳</span>
+        <div className="project-card__art">
+          <span className="project-card__art-chip" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+          <ProjectIllustration projectId={project.id} />
         </div>
         <div className="project-card__body">
           <div className="project-card__meta"><span>Caso seleccionado</span><time>{project.year}</time></div>
